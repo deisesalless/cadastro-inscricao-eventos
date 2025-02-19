@@ -1,4 +1,4 @@
-CREATE TABLE table_event (
+CREATE TABLE IF NOT EXISTS table_event (
     event_id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     pretty_name VARCHAR(50) NOT NULL,
