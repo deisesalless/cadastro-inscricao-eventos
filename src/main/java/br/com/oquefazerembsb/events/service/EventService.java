@@ -16,9 +16,6 @@ public class EventService {
     @Autowired
     private EventRepository repository;
 
-    @Autowired
-    private EventModel event;
-
     public EventResponseDTO saveNewEvent(EventRequestDTO dto) {
         EventModel newEvent = EventMapper.toModel(dto);
         return EventMapper.toDTO(repository.save(newEvent));
