@@ -4,15 +4,14 @@ import br.com.oquefazerembsb.events.dto.EventRequestDTO;
 import br.com.oquefazerembsb.events.dto.EventResponseDTO;
 import br.com.oquefazerembsb.events.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/events")
@@ -30,5 +29,13 @@ public class EventController {
         return ResponseEntity.created(location).body(eventResponse);
     }
 
+    @GetMapping
+    public ResponseEntity<List<EventResponseDTO>> getAllEvents() {
+        return ResponseEntity.ok(service.getAllEvents());
+    }
 
+    @GetMapping("/{prettyName}")
+    public ResponseEntity<EventResponseDTO> getByPrettyname(@PathVariable String prettyName) {
+        return ResponseEntity.status(HttpStatus.FOUND).body(service.getByPrettyName(prettyName));
+    }
 }
