@@ -17,17 +17,27 @@ public class EventService {
     private EventRepository repository;
 
     public EventResponseDTO saveNewEvent(EventRequestDTO dto) {
-        EventModel newEvent = EventMapper.toModel(dto);
-        return EventMapper.toDTO(repository.save(newEvent));
+        EventModel eventModel = EventMapper.INSTANCE.eventRequestToEventModel(dto);
+
+        String prettyName = generatePrettyName(eventModel.getTitle());
+        eventModel.setPrettyName(prettyName);
+
+        return EventMapper.INSTANCE.eventModelToEventResponseDTO(repository.save(eventModel));
     }
 
     public List<EventResponseDTO> getAllEvents() {
         List<EventModel> list = repository.findAll();
-        return EventMapper.toResponseDTOList(list);
+        return EventMapper.INSTANCE.listEventModelToListEventResponseDTO(list);
     }
 
     public EventResponseDTO getByPrettyName(String prettyName) {
-        return EventMapper.toDTO(repository.findByPrettyName(prettyName));
+        return EventMapper.INSTANCE.eventModelToEventResponseDTO(repository.findByPrettyName(prettyName));
+    }
+
+    private String generatePrettyName(String title) {
+        return title != null ? title.toLowerCase().
+                replaceAll("\\s+|\\b(de|da|do)\\b", "-").
+                replaceAll("-{2,}", "-") : null;
     }
 
 }
