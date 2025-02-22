@@ -13,10 +13,15 @@ public class Subscription {
     @Column(name = "subscription_number")
     private Integer subscriptionNumber;
 
-    @Column
-    private EventModel event;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private EventModel eventID;
 
+    @ManyToOne
+    @JoinColumn(name = "subscribed_user_id")
     private UserModel subscriptionID;
 
+    @ManyToOne
+    @JoinColumn(name = "indication_user_id", nullable = true)
     private UserModel indicationID;
 }
