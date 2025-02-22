@@ -70,6 +70,20 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- MapStruc Core -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+
+		<!-- MapStruc Processor -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+
 		<!-- Spring Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
