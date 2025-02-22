@@ -15,12 +15,16 @@ public class UserService {
     private UserRepository repository;
 
     public UserResponseDTO saveNewUser(UserRequestDTO dto) {
-        UserModel userModel = repository.save(UserMapper.INSTANCE.userDTOtoUserModel(dto));
-        return UserMapper.INSTANCE.userModelToUserDTO(userModel);
+        UserModel userModel = repository.save(UserMapper.INSTANCE.userRequestDTOtoUserModel(dto));
+        return UserMapper.INSTANCE.userModelToUserResponseDTO(userModel);
     }
 
     public UserResponseDTO getById(Integer id) {
         UserModel userModel = repository.findById(id).get();
-        return UserMapper.INSTANCE.userModelToUserDTO(userModel);
+        return UserMapper.INSTANCE.userModelToUserResponseDTO(userModel);
+    }
+
+    public UserModel mapToUserModel(UserResponseDTO dto) {
+        return UserMapper.INSTANCE.userResponseDTOtoUserModel(dto);
     }
 }
