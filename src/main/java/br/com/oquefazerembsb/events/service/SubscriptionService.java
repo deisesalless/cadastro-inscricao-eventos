@@ -24,12 +24,13 @@ public class SubscriptionService {
     public SubscriptionModel saveNewSubscription(String eventPrettyName, UserRequestDTO userDTO) {
         EventResponseDTO eventDTO = eventService.getByPrettyName(eventPrettyName);
 
+
         UserResponseDTO newUserDTO = userService.saveNewUser(userDTO);
         UserModel userModel = userService.mapToUserModel(newUserDTO);
 
         SubscriptionModel subscriptionModel = new SubscriptionModel();
 
-//        subscriptionModel.setEventID(eventDTO.getEventID());
+        subscriptionModel.setEventID(eventDTO.getEventID());
 
         subscriptionModel.setSubscriptionID(userModel);
 
