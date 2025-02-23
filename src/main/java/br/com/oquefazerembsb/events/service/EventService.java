@@ -2,6 +2,7 @@ package br.com.oquefazerembsb.events.service;
 
 import br.com.oquefazerembsb.events.dto.EventRequestDTO;
 import br.com.oquefazerembsb.events.dto.EventResponseDTO;
+import br.com.oquefazerembsb.events.exception.EventNotFoundException;
 import br.com.oquefazerembsb.events.mapper.EventMapper;
 import br.com.oquefazerembsb.events.model.EventModel;
 import br.com.oquefazerembsb.events.repository.EventRepository;
@@ -31,7 +32,10 @@ public class EventService {
     }
 
     public EventResponseDTO getByPrettyName(String prettyName) {
-        return EventMapper.INSTANCE.eventModelToEventResponseDTO(repository.findByPrettyName(prettyName));
+        EventModel eventModel = repository.findByPrettyName(prettyName);
+        if (eventModel == null) throw new EventNotFoundException("Evento não encontrado");
+
+        return EventMapper.INSTANCE.eventModelToEventResponseDTO(eventModel);
     }
 
     private String generatePrettyName(String title) {

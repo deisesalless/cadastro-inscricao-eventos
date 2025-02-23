@@ -4,6 +4,7 @@ import br.com.oquefazerembsb.events.dto.EventResponseDTO;
 import br.com.oquefazerembsb.events.dto.SubscriptionResponseDTO;
 import br.com.oquefazerembsb.events.dto.UserRequestDTO;
 import br.com.oquefazerembsb.events.dto.UserResponseDTO;
+import br.com.oquefazerembsb.events.exception.EventNotFoundException;
 import br.com.oquefazerembsb.events.mapper.SubscriptionMapper;
 import br.com.oquefazerembsb.events.model.EventModel;
 import br.com.oquefazerembsb.events.model.SubscriptionModel;
