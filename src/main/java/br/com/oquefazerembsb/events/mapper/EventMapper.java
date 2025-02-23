@@ -1,7 +1,7 @@
 package br.com.oquefazerembsb.events.mapper;
 
-import br.com.oquefazerembsb.events.dto.EventRequestDTO;
-import br.com.oquefazerembsb.events.dto.EventResponseDTO;
+import br.com.oquefazerembsb.events.dto.event.EventRequestDTO;
+import br.com.oquefazerembsb.events.dto.event.EventResponseDTO;
 import br.com.oquefazerembsb.events.model.EventModel;
 
 import java.util.List;

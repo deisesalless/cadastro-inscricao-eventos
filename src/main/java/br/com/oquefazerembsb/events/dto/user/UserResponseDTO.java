@@ -1,6 +1,5 @@
-package br.com.oquefazerembsb.events.dto;
+package br.com.oquefazerembsb.events.dto.user;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
