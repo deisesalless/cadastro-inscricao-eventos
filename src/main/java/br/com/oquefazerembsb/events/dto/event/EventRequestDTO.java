@@ -1,16 +1,13 @@
-package br.com.oquefazerembsb.events.dto;
+package br.com.oquefazerembsb.events.dto.event;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
-public class EventResponseDTO {
-    private Integer eventID;
+public class EventRequestDTO {
     private String title;
-    private String prettyName;
     private String location;
     private Double price;
     private LocalDate startDate;

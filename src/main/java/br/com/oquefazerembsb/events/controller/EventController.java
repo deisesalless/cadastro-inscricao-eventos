@@ -1,7 +1,7 @@
 package br.com.oquefazerembsb.events.controller;
 
-import br.com.oquefazerembsb.events.dto.EventRequestDTO;
-import br.com.oquefazerembsb.events.dto.EventResponseDTO;
+import br.com.oquefazerembsb.events.dto.event.EventRequestDTO;
+import br.com.oquefazerembsb.events.dto.event.EventResponseDTO;
 import br.com.oquefazerembsb.events.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
