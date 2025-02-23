@@ -24,6 +24,11 @@ public class UserService {
         return UserMapper.INSTANCE.userModelToUserResponseDTO(userModel);
     }
 
+    public UserResponseDTO getByEmail(String email) {
+        UserModel userModel = repository.findByUserEmail(email);
+        return UserMapper.INSTANCE.userModelToUserResponseDTO(userModel);
+    }
+
     public UserModel mapToUserModel(UserResponseDTO dto) {
         return UserMapper.INSTANCE.userResponseDTOtoUserModel(dto);
     }
