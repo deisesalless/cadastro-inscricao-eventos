@@ -16,7 +16,9 @@ public interface EventMapper {
 
     @Mapping(target = "eventID", ignore = true)
     @Mapping(target = "prettyName", ignore = true)
-    EventModel eventRequestToEventModel(EventRequestDTO dto);
+    EventModel eventRequestDTOtoEventModel(EventRequestDTO dto);
+
+    EventModel eventResponseDTOtoEventModel(EventResponseDTO dto);
 
     EventResponseDTO eventModelToEventResponseDTO(EventModel event);
 

@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
-@AllArgsConstructor
 public class EventResponseDTO {
     private Integer eventID;
     private String title;

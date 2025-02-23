@@ -17,7 +17,7 @@ public class EventService {
     private EventRepository repository;
 
     public EventResponseDTO saveNewEvent(EventRequestDTO dto) {
-        EventModel eventModel = EventMapper.INSTANCE.eventRequestToEventModel(dto);
+        EventModel eventModel = EventMapper.INSTANCE.eventRequestDTOtoEventModel(dto);
 
         String prettyName = generatePrettyName(eventModel.getTitle());
         eventModel.setPrettyName(prettyName);
@@ -38,6 +38,10 @@ public class EventService {
         return title != null ? title.toLowerCase().
                 replaceAll("\\s+|\\b(de|da|do)\\b", "-").
                 replaceAll("-{2,}", "-") : null;
+    }
+
+    public EventModel mapToEventModel(EventResponseDTO dto) {
+        return EventMapper.INSTANCE.eventResponseDTOtoEventModel(dto);
     }
 
 }
