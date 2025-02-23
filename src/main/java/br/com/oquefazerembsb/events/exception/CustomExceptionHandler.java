@@ -1,6 +1,6 @@
 package br.com.oquefazerembsb.events.exception;
 
-import br.com.oquefazerembsb.events.dto.ErrorResponse;
+import br.com.oquefazerembsb.events.dto.exception.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

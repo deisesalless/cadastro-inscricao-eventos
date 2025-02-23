@@ -1,4 +1,4 @@
-package br.com.oquefazerembsb.events.dto;
+package br.com.oquefazerembsb.events.dto.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

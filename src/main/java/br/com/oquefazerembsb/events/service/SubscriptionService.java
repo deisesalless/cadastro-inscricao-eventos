@@ -1,14 +1,12 @@
 package br.com.oquefazerembsb.events.service;
 
-import br.com.oquefazerembsb.events.dto.EventResponseDTO;
-import br.com.oquefazerembsb.events.dto.SubscriptionResponseDTO;
-import br.com.oquefazerembsb.events.dto.UserRequestDTO;
-import br.com.oquefazerembsb.events.dto.UserResponseDTO;
-import br.com.oquefazerembsb.events.exception.EventNotFoundException;
+import br.com.oquefazerembsb.events.dto.event.EventResponseDTO;
+import br.com.oquefazerembsb.events.dto.subscription.SubscriptionResponseDTO;
+import br.com.oquefazerembsb.events.dto.user.UserRequestDTO;
+import br.com.oquefazerembsb.events.dto.user.UserResponseDTO;
 import br.com.oquefazerembsb.events.mapper.SubscriptionMapper;
 import br.com.oquefazerembsb.events.model.EventModel;
 import br.com.oquefazerembsb.events.model.SubscriptionModel;
-import br.com.oquefazerembsb.events.model.UserModel;
 import br.com.oquefazerembsb.events.repository.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
