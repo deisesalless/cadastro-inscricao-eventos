@@ -28,12 +28,15 @@ public class SubscriptionService {
         EventResponseDTO eventDTO = eventService.getByPrettyName(eventPrettyName);
         EventModel eventModel = eventService.mapToEventModel(eventDTO);
 
-        UserResponseDTO newUserDTO = userService.saveNewUser(userDTO);
-        UserModel userModel = userService.mapToUserModel(newUserDTO);
+        UserResponseDTO userRecuperado = userService.getByEmail(userDTO.getUserEmail());
+        if (userRecuperado == null) {
+            userRecuperado = userService.saveNewUser(userDTO);
+        }
 
         SubscriptionModel subscriptionModel = new SubscriptionModel();
         subscriptionModel.setEventID(eventModel);
-        subscriptionModel.setSubscriptionID(userModel);
+        subscriptionModel.setSubscriptionID(userService.mapToUserModel(userRecuperado));
+//        subscriptionModel.setIndicationID();
 
         return SubscriptionMapper.INSTANCE.subscriptionModelToSubscriptionResponseDTO(repository.save(subscriptionModel));
     }
