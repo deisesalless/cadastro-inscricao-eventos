@@ -2,8 +2,8 @@ package br.com.oquefazerembsb.events.service;
 
 import br.com.oquefazerembsb.events.dto.event.EventResponseDTO;
 import br.com.oquefazerembsb.events.dto.subscription.SubscriptionResponseDTO;
-import br.com.oquefazerembsb.events.dto.user.UserRequestDTO;
-import br.com.oquefazerembsb.events.dto.user.UserResponseDTO;
+import br.com.oquefazerembsb.events.dto.user.UserDTO;
+import br.com.oquefazerembsb.events.exception.SubscriptionConflictException;
 import br.com.oquefazerembsb.events.mapper.SubscriptionMapper;
 import br.com.oquefazerembsb.events.model.EventModel;
 import br.com.oquefazerembsb.events.model.SubscriptionModel;
@@ -23,20 +23,24 @@ public class SubscriptionService {
     @Autowired
     private SubscriptionRepository repository;
 
-    public SubscriptionResponseDTO saveNewSubscription(String eventPrettyName, UserRequestDTO userDTO) {
+    public SubscriptionResponseDTO saveNewSubscription(String eventPrettyName, UserDTO userDTO) {
+
+        // Se o evento não existir já lança uma execeção na camada EventService
         EventResponseDTO eventDTO = eventService.getByPrettyName(eventPrettyName);
         EventModel eventModel = eventService.mapToEventModel(eventDTO);
 
-        UserResponseDTO userRecuperado = userService.getByEmail(userDTO.getUserEmail());
-        if (userRecuperado == null) {
-            userRecuperado = userService.saveNewUser(userDTO);
-        }
+        // Se o usuario ja existir não salva um novo no DB, logica na camada UserService
+        UserDTO newUser = userService.saveNewUser(userDTO);
 
         SubscriptionModel subscriptionModel = new SubscriptionModel();
         subscriptionModel.setEventID(eventModel);
-        subscriptionModel.setSubscriptionID(userService.mapToUserModel(userRecuperado));
-//        subscriptionModel.setIndicationID();
+        subscriptionModel.setSubscriptionID(userService.mapToUserModel(newUser));
 
+        // Valida se o usuario ja está inscrito no evento
+        var userIndication = repository.findByEventIDAndSubscriptionID(eventModel, userService.mapToUserModel(newUser));
+        if (userIndication != null) throw new SubscriptionConflictException("Já existe inscrição para o usuário: " + newUser.getUserEmail());
+
+        subscriptionModel.setIndicationID(userIndication.getIndicationID());
         return SubscriptionMapper.INSTANCE.subscriptionModelToSubscriptionResponseDTO(repository.save(subscriptionModel));
     }
 

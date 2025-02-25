@@ -24,14 +24,14 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ErrorResponse> internalServerErrorHandler(RuntimeException exception, HttpServletRequest request) {
+    @ExceptionHandler(SubscriptionConflictException.class)
+    public ResponseEntity<ErrorResponse> subscriptionConflictHandler(SubscriptionConflictException exception, HttpServletRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(
                 new Date(),
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                HttpStatus.CONFLICT.value(),
                 exception.getMessage(),
                 request.getRequestURI()
         );
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 }

@@ -1,7 +1,7 @@
 package br.com.oquefazerembsb.events.controller;
 
 import br.com.oquefazerembsb.events.dto.subscription.SubscriptionResponseDTO;
-import br.com.oquefazerembsb.events.dto.user.UserRequestDTO;
+import br.com.oquefazerembsb.events.dto.user.UserDTO;
 import br.com.oquefazerembsb.events.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class SubscriptionController {
     private SubscriptionService service;
 
     @PostMapping("/{prettyName}")
-    public ResponseEntity<SubscriptionResponseDTO> createNewSubscription(@PathVariable String prettyName, @RequestBody UserRequestDTO dto) {
+    public ResponseEntity<SubscriptionResponseDTO> createNewSubscription(@PathVariable String prettyName, @RequestBody UserDTO dto) {
         SubscriptionResponseDTO subscriptionResponse = service.saveNewSubscription(prettyName, dto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

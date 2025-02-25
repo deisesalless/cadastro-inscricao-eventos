@@ -1,7 +1,6 @@
 package br.com.oquefazerembsb.events.mapper;
 
-import br.com.oquefazerembsb.events.dto.user.UserRequestDTO;
-import br.com.oquefazerembsb.events.dto.user.UserResponseDTO;
+import br.com.oquefazerembsb.events.dto.user.UserDTO;
 import br.com.oquefazerembsb.events.model.UserModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,12 +11,9 @@ public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    @Mapping(target = "userID", ignore = true)
-    UserModel userRequestDTOtoUserModel(UserRequestDTO dto);
+    UserModel userDTOtoUserModel(UserDTO dto);
 
-    UserModel userResponseDTOtoUserModel(UserResponseDTO dto);
-
-    UserResponseDTO userModelToUserResponseDTO(UserModel user);
+    UserDTO userModelToUserDTO(UserModel user);
 
 
 }

@@ -33,7 +33,7 @@ public class EventService {
 
     public EventResponseDTO getByPrettyName(String prettyName) {
         EventModel eventModel = repository.findByPrettyName(prettyName);
-        if (eventModel == null) throw new EventNotFoundException("Evento não encontrado");
+        if (eventModel == null) throw new EventNotFoundException("Evento " + prettyName + " não encontrado");
 
         return EventMapper.INSTANCE.eventModelToEventResponseDTO(eventModel);
     }
