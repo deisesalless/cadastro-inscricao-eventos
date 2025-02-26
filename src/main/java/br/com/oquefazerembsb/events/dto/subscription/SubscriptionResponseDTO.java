@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class SubscriptionResponseDTO {
     private Integer subscriptionNumber;
-    private EventModel eventID;
-    private UserModel subscriptionID;
-    private UserModel indicationID;
+    private EventModel event;
+    private UserModel subscription;
+    private UserModel indication;
     private String designation;
 }

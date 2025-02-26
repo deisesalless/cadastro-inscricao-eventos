@@ -11,6 +11,8 @@ public interface SubscriptionMapper {
 
     SubscriptionMapper INSTANCE = Mappers.getMapper(SubscriptionMapper.class);
 
-    @Mapping(source = "eventID", target = "eventID")
+    @Mapping(source = "eventID", target = "event")
+    @Mapping(source = "subscriptionID", target = "subscription")
+    @Mapping(source = "indicationID", target = "indication")
     SubscriptionResponseDTO subscriptionModelToSubscriptionResponseDTO(SubscriptionModel subscription);
 }
