@@ -41,7 +41,7 @@ public class SubscriptionService {
         subscriptionModel.setEventID(eventModel);
         subscriptionModel.setSubscriptionID(newUser);
 
-        subscriptionModel.setIndicationID(subscribedUser.getIndicationID());
+//        subscriptionModel.setIndicationID(subscribedUser.getIndicationID());
         return SubscriptionMapper.INSTANCE.subscriptionModelToSubscriptionResponseDTO(repository.save(subscriptionModel));
     }
 

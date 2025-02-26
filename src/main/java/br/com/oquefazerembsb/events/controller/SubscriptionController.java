@@ -21,7 +21,7 @@ public class SubscriptionController {
     public ResponseEntity<SubscriptionResponseDTO> createNewSubscription(@PathVariable String prettyName, @RequestBody UserDTO dto) {
         SubscriptionResponseDTO subscriptionResponse = service.saveNewSubscription(prettyName, dto);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{subscriptionNumber}")
                 .buildAndExpand(subscriptionResponse.getSubscriptionNumber()).toUri();
 
         return ResponseEntity.created(location).body(subscriptionResponse);
