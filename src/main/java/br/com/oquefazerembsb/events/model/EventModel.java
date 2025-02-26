@@ -13,6 +13,7 @@ public class EventModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "event_id")
     private Integer eventID;
 
     @Column(name = "title", length = 255, nullable = false)

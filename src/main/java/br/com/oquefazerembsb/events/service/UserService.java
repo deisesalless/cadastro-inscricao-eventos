@@ -13,15 +13,10 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public UserDTO saveNewUser(UserDTO dto) {
+    public UserModel saveNewUser(UserDTO dto) {
         var userRecover = getByEmail(dto.getUserEmail());
-
-        if (userRecover == null) {
-            UserModel userModel = repository.save(UserMapper.INSTANCE.userDTOtoUserModel(dto));
-            return UserMapper.INSTANCE.userModelToUserDTO(userModel);
-        }
-
-        return null;
+        if (userRecover == null) return  repository.save(UserMapper.INSTANCE.userDTOtoUserModel(dto));
+        return userRecover;
     }
 
     public UserDTO getById(Integer id) {
@@ -29,9 +24,8 @@ public class UserService {
         return UserMapper.INSTANCE.userModelToUserDTO(userModel);
     }
 
-    public UserDTO getByEmail(String email) {
-        UserModel userModel = repository.findByUserEmail(email);
-        return UserMapper.INSTANCE.userModelToUserDTO(userModel);
+    public UserModel getByEmail(String email) {
+        return repository.findByUserEmail(email);
     }
 
     public UserModel mapToUserModel(UserDTO dto) {

@@ -10,6 +10,7 @@ public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer userID;
 
     @Column(name = "user_name", length = 255, nullable = false)
