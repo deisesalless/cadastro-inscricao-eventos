@@ -18,24 +18,24 @@ public class EventService {
     private EventRepository repository;
 
     public EventResponseDTO saveNewEvent(EventRequestDTO dto) {
-        EventModel eventModel = EventMapper.INSTANCE.eventRequestDTOtoEventModel(dto);
+        EventModel eventModel = EventMapper.INSTANCE.toEventModel(dto);
 
         String prettyName = generatePrettyName(eventModel.getTitle());
         eventModel.setPrettyName(prettyName);
 
-        return EventMapper.INSTANCE.eventModelToEventResponseDTO(repository.save(eventModel));
+        return EventMapper.INSTANCE.toEventResponseDTO(repository.save(eventModel));
     }
 
     public List<EventResponseDTO> getAllEvents() {
         List<EventModel> list = repository.findAll();
-        return EventMapper.INSTANCE.listEventModelToListEventResponseDTO(list);
+        return EventMapper.INSTANCE.toListEventResponseDTO(list);
     }
 
     public EventResponseDTO getByPrettyName(String prettyName) {
         EventModel eventModel = repository.findByPrettyName(prettyName);
         if (eventModel == null) throw new EventNotFoundException("Evento " + prettyName + " não encontrado");
 
-        return EventMapper.INSTANCE.eventModelToEventResponseDTO(eventModel);
+        return EventMapper.INSTANCE.toEventResponseDTO(eventModel);
     }
 
     private String generatePrettyName(String title) {
@@ -45,7 +45,7 @@ public class EventService {
     }
 
     public EventModel mapToEventModel(EventResponseDTO dto) {
-        return EventMapper.INSTANCE.eventResponseDTOtoEventModel(dto);
+        return EventMapper.INSTANCE.toEventModel(dto);
     }
 
 }

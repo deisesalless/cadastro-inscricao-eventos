@@ -4,16 +4,16 @@ import br.com.oquefazerembsb.events.dto.user.UserDTO;
 import br.com.oquefazerembsb.events.model.UserModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface UserMapper {
 
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+    UserModel mapToUserModel(UserDTO dto);
 
-    UserModel userDTOtoUserModel(UserDTO dto);
-
-    UserDTO userModelToUserDTO(UserModel user);
+    UserDTO mapToUserDTO(UserModel user);
 
 
 }

@@ -5,22 +5,22 @@ import br.com.oquefazerembsb.events.dto.event.EventResponseDTO;
 import br.com.oquefazerembsb.events.model.EventModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface EventMapper {
-
-    EventMapper INSTANCE = Mappers.getMapper(EventMapper.class);
 
     @Mapping(target = "eventID", ignore = true)
     @Mapping(target = "prettyName", ignore = true)
-    EventModel eventRequestDTOtoEventModel(EventRequestDTO dto);
+    EventModel mapToEventModel(EventRequestDTO dto);
 
-    EventModel eventResponseDTOtoEventModel(EventResponseDTO dto);
+    EventModel mapToEventModel(EventResponseDTO dto);
 
-    EventResponseDTO eventModelToEventResponseDTO(EventModel event);
+    EventResponseDTO mapToEventResponseDTO(EventModel event);
 
-    List<EventResponseDTO> listEventModelToListEventResponseDTO(List<EventModel> list);
+    List<EventResponseDTO> mapToListEventResponseDTO(List<EventModel> list);
 }

@@ -3,10 +3,10 @@ package br.com.oquefazerembsb.events.controller;
 import br.com.oquefazerembsb.events.dto.event.EventRequestDTO;
 import br.com.oquefazerembsb.events.dto.event.EventResponseDTO;
 import br.com.oquefazerembsb.events.service.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -21,7 +21,7 @@ public class EventController {
     private EventService service;
 
     @PostMapping
-    public ResponseEntity<EventResponseDTO> createNewEvent(@RequestBody @Validated EventRequestDTO dto) {
+    public ResponseEntity<EventResponseDTO> createNewEvent(@RequestBody @Valid EventRequestDTO dto) {
         EventResponseDTO eventResponse = service.saveNewEvent(dto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(eventResponse.getEventID()).toUri();
