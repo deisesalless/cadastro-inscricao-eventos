@@ -11,5 +11,5 @@ public class SubscriptionResponseDTO {
     private EventModel event;
     private UserModel subscription;
     private UserModel indication;
-    private String designation;
+//    private String designation;
 }

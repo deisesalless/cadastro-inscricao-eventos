@@ -24,6 +24,9 @@ public class SubscriptionService {
     @Autowired
     private SubscriptionRepository repository;
 
+    @Autowired
+    private SubscriptionMapper mapper;
+
     public SubscriptionResponseDTO saveNewSubscription(String eventPrettyName, UserDTO userDTO) {
 
         // Se o evento não existir já lança uma exceção na camada EventService
@@ -42,7 +45,7 @@ public class SubscriptionService {
         subscriptionModel.setSubscriptionID(newUser);
 
 //        subscriptionModel.setIndicationID(subscribedUser.getIndicationID());
-        return SubscriptionMapper.INSTANCE.subscriptionModelToSubscriptionResponseDTO(repository.save(subscriptionModel));
+        return mapper.mapToSubscriptionResponseDTO(repository.save(subscriptionModel));
     }
 
 

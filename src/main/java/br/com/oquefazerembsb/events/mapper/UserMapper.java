@@ -6,12 +6,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface UserMapper {
 
-    UserModel mapToUserModel(UserDTO dto);
+    @Mapping(target = "userID", ignore = true)
+    UserModel mapToNewUserModel(UserDTO dto);
 
     UserDTO mapToUserDTO(UserModel user);
 
